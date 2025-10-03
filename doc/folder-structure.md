@@ -1,7 +1,7 @@
-cljs-web-app/
+cljs-web-app/ (root)
 ├─── 📄 Configuração & Metadados
 │    ├─── deps.edn (Dependências Clojure)
-│    ├─── shadow-cljs.edn (Build do ClojureScript)
+│    ├─── shadow-cljs.edn (Build do ClojureScript, clj + npm)
 │    ├─── package.json (Dependências & Scripts Node.js)
 │    ├─── pnpm-lock.yaml (Lockfile do pnpm)
 │    ├─── .gitignore (Arquivos ignorados pelo Git)
@@ -22,19 +22,18 @@ cljs-web-app/
 │    │    └─── index.css
 │    └─── resources/ (Assets como imagens, fontes, etc.)
 │
-├─── 📁 Testes (test)
+├─── 📁 Testes (test/)
 │    └─── clj/
 │         └─── cljs_web_app/
 │              └─── core_test.clj
 │
-├─── 📁 Documentação (doc)
-│    ├─── ace-of-cards-analysis.md
+├─── 📁 Documentação (doc/)
+│    ├─── folder-structure.md
 │    ├─── MINDMAP.md
 │    └─── SETUP.md
 │
 └─── ⚙️ Ferramentas & Dependências (gerenciados automaticamente)
      ├─── .clj-kondo/ (Configuração do Linter)
-     ├─── .cpcache/
      ├─── .git/
      ├─── .lsp/
      ├─── .shadow-cljs/
