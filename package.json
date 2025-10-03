@@ -13,9 +13,12 @@
   "dependencies": {
     "lucide-react": "^0.544.0",
     "react": "^19.2.0",
+    "react-dom": "^19.2.0",
     "react-refresh": "^0.18.0"
   },
   "devDependencies": {
+    "process": "^0.11.10",
+    "scheduler": "^0.27.0",
     "shadow-cljs": "^3.2.1"
   }
 }
