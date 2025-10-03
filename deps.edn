@@ -1,0 +1,8 @@
+{:paths ["src"]
+
+ :deps {org.clojure/clojurescript {:mvn/version "1.11.60"}
+        lilactown/helix            {:mvn/version "0.1.9"}
+        ;; Adicione outras dependências CLJS aqui
+        }
+
+ :aliases {:build {:main-opts ["-m" "shadow.cljs.devtools.cli"]}}}
