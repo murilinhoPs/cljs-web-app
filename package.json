@@ -1,12 +1,21 @@
 {
   "name": "cljs-web-app",
   "version": "1.0.0",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "shadow-cljs watch app",
+    "deploy": "npx shadow-cljs release app-release"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": ""
+  "author": "murilinhops",
+  "license": "EPL-1.0",
+  "description": "A simple web app built with React and Shadow CLJS",
+  "dependencies": {
+    "lucide-react": "^0.544.0",
+    "react": "^19.2.0",
+    "react-refresh": "^0.18.0"
+  },
+  "devDependencies": {
+    "shadow-cljs": "^3.2.1"
+  }
 }
