@@ -43,18 +43,19 @@ A estrutura do projeto é bem definida e segue padrões comuns para aplicações
 
 A conexão entre as partes da aplicação acontece em três arquivos principais: `public/index.html`, `shadow-cljs.edn` e `src/main/core.cljs`.
 
-1.  **`public/index.html`**:
+1. **`public/index.html`**:
     - Contém um elemento HTML, `<div id="app"></div>`, que servirá como o "container" da aplicação React.
     - Inclui a tag `<script>` que carrega o JavaScript compilado: `<script src="/js/main.js" type="text/javascript"></script>`.
 
-2.  **`shadow-cljs.edn`**:
+2. **`shadow-cljs.edn`**:
     - Na seção `:builds`, a configuração `:app` define como o código será compilado.
     - `:target :browser` especifica que o código será executado no navegador.
     - `:output-dir "public/js"` instrui o compilador a colocar os arquivos JavaScript gerados na pasta `public/js`.
     - `:modules {:main {:init-fn main.core/init}}` define que o ponto de entrada do código é a função `init` no namespace `main.core`.
 
-3.  **`src/main/core.cljs`**:
+3. **`src/main/core.cljs`**:
     - A função `init` usa `reagent.dom/render` para "montar" o componente principal da aplicação na `div#app` do `index.html`. A chamada é similar a:
+
       ```clojure
       (reagent.dom/render [componente-principal] (js/document.getElementById "app"))
       ```
@@ -70,23 +71,23 @@ O deploy é automatizado pelo arquivo `.github/workflows/deploy.yml` usando **Gi
 - **Gatilho (Trigger)**: O processo é acionado por um `push` na branch `main`.
 
 - **Processo de Build e Deploy**:
-  1.  **Setup**: Inicia uma máquina virtual Ubuntu.
-  2.  **Checkout**: Baixa o código do repositório.
-  3.  **Install Dependencies**: Executa `npm install` para instalar as dependências JavaScript.
-  4.  **Build**: Executa `npm run release` (que roda `shadow-cljs release app`) para compilar e otimizar o código para produção.
-  5.  **Deploy**: Usa a action `peaceiris/actions-gh-pages` para enviar o conteúdo da pasta `public/` para a branch `gh-pages`, publicando a aplicação no GitHub Pages.
+  1. **Setup**: Inicia uma máquina virtual Ubuntu.
+  2. **Checkout**: Baixa o código do repositório.
+  3. **Install Dependencies**: Executa `npm install` para instalar as dependências JavaScript.
+  4. **Build**: Executa `npm run release` (que roda `shadow-cljs release app`) para compilar e otimizar o código para produção.
+  5. **Deploy**: Usa a action `peaceiris/actions-gh-pages` para enviar o conteúdo da pasta `public/` para a branch `gh-pages`, publicando a aplicação no GitHub Pages.
 
 ---
 
-# Guia: Criando um Novo Web App com a Mesma Stack (Helix)
+## Guia: Criando um Novo Web App com a Mesma Stack (Helix)
 
 Este é um passo a passo para criar um projeto do zero com ClojureScript, React (via Helix), shadow-cljs e deps.edn.
 
 ### Pré-requisitos
 
-1.  **JDK (Java Development Kit)**: Versão 8 ou superior.
-2.  **Clojure CLI Tools**: Para gerenciar o `deps.edn`.
-3.  **Node.js e NPM**: Para gerenciar o `package.json`.
+1. **JDK (Java Development Kit)**: Versão 8 ou superior.
+2. **Clojure CLI Tools**: Para gerenciar o `deps.edn`.
+3. **Node.js e NPM**: Para gerenciar o `package.json`.
 
 ---
 
@@ -174,7 +175,7 @@ Crie o arquivo `shadow-cljs.edn`:
 
 #### Passo 5: Criar o Ponto de Entrada (HTML e CLJS)
 
-1.  **Crie o `public/index.html`**:
+1. **Crie o `public/index.html`**:
 
     ```html
     <!-- public/index.html -->
@@ -191,7 +192,7 @@ Crie o arquivo `shadow-cljs.edn`:
     </html>
     ```
 
-2.  **Crie o `src/meu_novo_app/core.cljs`**:
+2. **Crie o `src/meu_novo_app/core.cljs`**:
 
     ```clojure
     ;; src/meu_novo_app/core.cljs
@@ -212,13 +213,14 @@ Crie o arquivo `shadow-cljs.edn`:
 
 #### Passo 6: Rodar a Aplicação
 
-1.  **Inicie o compilador**:
+1. **Inicie o compilador**:
+
     ```bash
     npm run dev
     ```
 
-2.  **Abra no navegador**:
-    Acesse **http://localhost:8080**.
+2. **Abra no navegador**:
+    Acesse **<http://localhost:8080>**.
 
 ---
 
@@ -233,18 +235,18 @@ Crie o arquivo `shadow-cljs.edn`:
 
 ---
 
-# O que é `shadow.cljs.devtools.cli` no `deps.edn`?
+## O que é `shadow.cljs.devtools.cli` no `deps.edn`?
 
 Em resumo, `shadow.cljs.devtools.cli` é o **ponto de entrada da interface de linha de comando (CLI) do `shadow-cljs`**.
 
 ### Detalhes
 
-1.  **Aliases no `deps.edn`**: A seção `:aliases` permite criar "atalhos" ou configurações alternativas que você pode ativar ao rodar um comando `clj`.
+1. **Aliases no `deps.edn`**: A seção `:aliases` permite criar "atalhos" ou configurações alternativas que você pode ativar ao rodar um comando `clj`.
 
-2.  **O Alias `:build`**: O alias que criamos, `:build`, contém a instrução `:main-opts ["-m" "shadow.cljs.devtools.cli"]`. Isso significa:
+2. **O Alias `:build`**: O alias que criamos, `:build`, contém a instrução `:main-opts ["-m" "shadow.cljs.devtools.cli"]`. Isso significa:
     > "Quando o alias `:build` for ativado, execute a função principal (`-main`) do namespace `shadow.cljs.devtools.cli`."
 
-3.  **O Namespace `shadow.cljs.devtools.cli`**: Este é o código dentro da biblioteca `shadow-cljs` que sabe como interpretar comandos de terminal como `watch`, `release`, `compile`, etc. É a própria aplicação de linha de comando.
+3. **O Namespace `shadow.cljs.devtools.cli`**: Este é o código dentro da biblioteca `shadow-cljs` que sabe como interpretar comandos de terminal como `watch`, `release`, `compile`, etc. É a própria aplicação de linha de comando.
 
 ### Duas Maneiras de Rodar o Mesmo Comando
 
