@@ -1,8 +1,13 @@
-{:paths ["src"]
+{:paths ["src" "resources" "src/cljs" "src/clj"]
 
- :deps {org.clojure/clojurescript {:mvn/version "1.11.60"}
-        lilactown/helix            {:mvn/version "0.1.9"}
-        ;; Adicione outras dependências CLJS aqui
-        }
+ :deps {org.clojure/clojure {:mvn/version "1.12.3"} ;; clj deps
+        org.clojure/clojurescript {:mvn/version "1.12.42"}
+        org.clojure/tools.cli {:mvn/version "1.2.245"}
+        prismatic/schema {:mvn/version "1.4.1"}
+        com.taoensso/tempura {:mvn/version "1.5.4"}}
 
- :aliases {:build {:main-opts ["-m" "shadow.cljs.devtools.cli"]}}}
+ :aliases {:cljs  {:extra-deps {thheller/shadow-cljs {:mvn/version "3.2.1"} ;; deps apenas para .cljs
+                                lilactown/helix {:mvn/version "0.1.11"}}}
+           :build {:main-opts ["-m" "shadow.cljs.devtools.cli"]} ;; equivalente ao "npm start" 
+           :dev   {:main-opts ["-m" "shadow.cljs.devtools.cli" "watch" "app"]}    ;; equivalente ao "npm run dev"
+           :run-m {:main-opts ["-m" "cljs-web-app.clj.core"]}}}
